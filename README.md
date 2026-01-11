@@ -30,3 +30,9 @@ Entry for the OpenADMET ExpansionRx Challenge
         *   Removes highly correlated features (Pearson > 0.95) to reduce redundancy.
         *   Selects top 1999 features by variance if feature count is excessive.
     
+*   **Things that did not work out for me:**
+*        * training models on public ADMET data and using the predictions as additional features
+*        * delta learning with public ADMET data
+*       * finetuning TabPFN
+*   *   initially spent many days in training AutoGluon ensemble models with extreme/best presents.
+*  
