@@ -8,10 +8,19 @@ Entry for the OpenADMET ExpansionRx Challenge
     *   **Jazzy:** Interaction energies (delta interaction, delta polar/apolar). https://github.com/AstraZeneca/jazzy
     *   **ChemAxon:** pKa, logP, logD, H/L/B. using https://docs.chemaxon.com/display/docs/python-api_index.md
     *   **CheMeleon:** 2048-bit embeddings. https://github.com/JacksonBurns/chemeleon
-    *   **Minimol:** 512-bit embeddings https://github.com/graphcore-research/minimol/
+    *   **Minimol:** 512-bit embeddings https://github.com/graphcore-research/minimol
+    *   **Giammy:** public models for 
 
- *   **Modeling Strategy:**
-     *   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5) https://github.com/PriorLabs/tabPFN
+ *   **Modeling Strategy 2:**
+     *   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5)
+ *   **Feature set selection:**
+ *   rdkit2d chemeleon chemaxon giammy
+ **Feature reduction:**
+   Drops constant features.
+        *   Removes highly correlated features (Pearson > 0.85) to reduce redundancy.
+ 
+ *   **Modeling Strategy 3:**
+     *   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5)
      *   **Feature set selection:**
          * For each endpoint, several feature set combinations were tested with a 5-fold cross validation.
          * TabPFN 2.5 has a 2000 feature limitation, so 2048-bit ECFP4 fingerprtints and 2048-bit CheMeleon embeddings were initially excluded.
@@ -25,7 +34,7 @@ Entry for the OpenADMET ExpansionRx Challenge
     *   "MGMB": "Avalon+ChemAxon+ERG+Minimol"
     *   "MLM_CLint": "ChemAxon+Minimol+RDKit"
     *   "MPPB": "ChemAxon+Minimol+RDKit"
-     *   **Preprocessing:**
+     *   **Feature reduction:**
         *   Drops constant features.
         *   Removes highly correlated features (Pearson > 0.95) to reduce redundancy.
         *   Selects top 1999 features by variance if feature count is excessive.
