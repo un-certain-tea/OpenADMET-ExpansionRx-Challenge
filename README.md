@@ -53,9 +53,10 @@ Multiple molecular representations were used:
 
 ## Notes
 
-The following approaches were explored but did not improve performance:
-- Using predictions from public ADMET models as features
+The following approaches were explored but did not give me any good performance:
+- Using predictions from public ADMET models as additional features
 - Delta learning with public ADMET data
 - Fine-tuning TabPFN
-- AutoGluon ensemble models
+- AutoGluon ensemble models using the usual suspects. TabPFN 2.5 produced a better model in seconds than AutoGluon after 4 hours.
+- Finetuning https://github.com/NVIDIA-Digital-Bio/KERMT on challenge dataset.
 
