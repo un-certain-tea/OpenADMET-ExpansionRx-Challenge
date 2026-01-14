@@ -1,15 +1,19 @@
 # OpenADMET-ExpansionRx-Challenge
-Entry for the OpenADMET ExpansionRx Challenge
+The final submission is an average of several model building approaches I have tried over the course of this challenge: 
+* Predictions from a Chemprop multitask training
+* Predictions from a TabPFN model using a single feature set for all endpoints
+* Predictions from a TabPFN model using different featuresets per endpoint
 
-
-
-*   **Generated Feature sets:**
+*   **Feature sets:**
     *   **RDKit:** 2D descriptors, ECFP4 fingerprints (binary & count), 3D descriptors (WHIM, GETAWAY, RDF, MORSE, AUTOCORR3D) with `nvmolkit` for conformer generation, Avalon substructure fingerprints, Extended Reduced Graph fingerprints.
     *   **Jazzy:** Interaction energies (delta interaction, delta polar/apolar). https://github.com/AstraZeneca/jazzy
     *   **ChemAxon:** pKa, logP, logD, H/L/B. using https://docs.chemaxon.com/display/docs/python-api_index.md
     *   **CheMeleon:** 2048-bit embeddings. https://github.com/JacksonBurns/chemeleon
     *   **Minimol:** 512-bit embeddings https://github.com/graphcore-research/minimol
     *   **Giammy:** public models for 
+
+
+
 
  *   **Modeling Strategy 2:**
      *   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5)
