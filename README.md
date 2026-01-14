@@ -52,6 +52,9 @@ Multiple molecular representations were used:
 
 ---
 
+## Performance comments
+Model performance during training was not used as the primary selection criterion. Instead, models were trained and evaluated directly on the leaderboard, and final model selection was based on leaderboard performance.
+
 ## Notes
 
 The following approaches were explored but did not give me any good performance:
