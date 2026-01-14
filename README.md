@@ -12,18 +12,19 @@ The final submission is an average of several model building approaches I have t
 *   **Minimol:** 512-bit embeddings https://github.com/graphcore-research/minimol
 *   **Giammy:** public models for 
 
+**Chemprop MT training:**
 
 
-
- *   **Modeling Strategy 2:**
-     *   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5)
- *   **Feature set selection:**
- *   rdkit2d chemeleon chemaxon giammy
+**Modeling Strategy 2:**
+*   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5)
+*   **Feature set selection:**
+*   rdkit2d chemeleon chemaxon giammy
  **Feature reduction:**
-   Drops constant features.
-        *   Removes highly correlated features (Pearson > 0.85) to reduce redundancy.
- 
- *   **Modeling Strategy 3:**
+  * drop constant features
+  * remove highly correlated features (Pearson > 0.85) to keep below the 2000 feature limit of TabPFN 2.5
+
+
+ **Modeling Strategy 3:**
      *   **Algorithm:** `TabPFNRegressor` (TabPFN 2.5)
      *   **Feature set selection:**
          * For each endpoint, several feature set combinations were tested with a 5-fold cross validation.
@@ -43,7 +44,7 @@ The final submission is an average of several model building approaches I have t
         *   Removes highly correlated features (Pearson > 0.95) to reduce redundancy.
         *   Selects top 1999 features by variance if feature count is excessive.
     
-*   **Things that did not work out for me:**
+ **Things that did not work out for me:**
 *        * training models on public ADMET data and using the predictions as additional features
 *        * delta learning with public ADMET data
 *       * finetuning TabPFN
