@@ -1,10 +1,10 @@
 # OpenADMET-ExpansionRx-Challenge
 
-Final predictions were generated using the winsorized mean over multiple modeling strategies:
+Final submission was generated using the winsorized mean over multiple modeling strategies:
 
-- A **Chemprop multitask** neural network
-- **TabPFN** models trained on a single shared feature set
-- **TabPFN** models trained with endpoint-specific feature sets
+- Three **Chemprop multitask** neural networks
+- **TabPFN** trained on a single shared feature set
+- **TabPFN** trained with endpoint-specific feature sets
 
 ---
 
@@ -22,32 +22,33 @@ Multiple molecular representations were used:
 
 ## Models
 
-### Chemprop
-- Multitask training across all endpoints
-- Included directly in the final ensemble
+### Chemprop multitask
+- Chemprop 2.2.1 with CheMeleon foundation model
+- Multitask training across all endpoint
+- A separate model was trained for each descriptor set provided via --descriptors-path (ChemAxon, RDKit2D, AZ-pred).
 
 ### TabPFN (Single Feature Set)
-- **Algorithm:** `TabPFNRegressor` (v2.5)
-- Feature set: RDKit + CheMeleon + ChemAxon + AZ-pred
+- `TabPFNRegressor` (v2.5)
+- Feature set: RDKit2D + CheMeleon + ChemAxon + AZ-pred
 - Feature reduction:
   - Drop constant features
   - Remove correlated features (Pearson > 0.85). Cutoff was chosen to stay <2000 features (TabPFN 2.5 limit)
 
 ### TabPFN (Endpoint-Specific)
-- **Algorithm:** `TabPFNRegressor` (v2.5)
+- `TabPFNRegressor` (v2.5)
 - Feature sets selected per endpoint via 5-fold CV
 - 2048-bit ECFP4 and CheMeleon excluded due to feature limits in TabPFN 2.5
 
 **Final feature sets:**
 - Caco2_Efflux: ChemAxon + ERG + Jazzy + Minimol
-- Caco2_Papp_AB: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit
-- HLM_CLint: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit
-- KSOL: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit
-- LogD: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit
-- MBPB: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit
+- Caco2_Papp_AB: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit2D
+- HLM_CLint: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit2D
+- KSOL: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit2D
+- LogD: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit2D
+- MBPB: Avalon + ChemAxon + ERG + Jazzy + Minimol + RDKit2D
 - MGMB: Avalon + ChemAxon + ERG + Minimol
-- MLM_CLint: ChemAxon + Minimol + RDKit
-- MPPB: ChemAxon + Minimol + RDKit
+- MLM_CLint: ChemAxon + Minimol + RDKit2D
+- MPPB: ChemAxon + Minimol + RDKit2D
 
 ---
 
@@ -57,6 +58,7 @@ The following approaches were explored but did not give me any good performance:
 - Using predictions from public ADMET models as additional features
 - Delta learning with public ADMET data
 - Fine-tuning TabPFN
-- AutoGluon ensemble models using the usual suspects. TabPFN 2.5 produced a better model in seconds than AutoGluon after 4 hours.
 - Finetuning https://github.com/NVIDIA-Digital-Bio/KERMT on challenge dataset.
+- AutoGluon ensemble models using the usual suspects. TabPFN 2.5 produced a better model in seconds than AutoGluon after 4 hours.
+Interestingly, none of the final models make use of ECFP4 fingerprints (binary or count-based). In my experiments, count-based fingerprints consistently resulted in poorer model performance.
 
