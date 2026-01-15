@@ -24,8 +24,9 @@ Multiple molecular representations were used:
 
 ### Chemprop multitask
 - Chemprop 2.2.1 with CheMeleon foundation model
-- Multitask training across all endpoint
-- A separate model was trained for each descriptor set provided via --descriptors-path (ChemAxon, RDKit2D, AZ-pred).
+- Multitask training across all endpoints
+- A separate model was trained for each descriptor set provided
+via --descriptors-path (ChemAxon, RDKit2D, AZ-pred).
 
 ### TabPFN (Single Feature Set)
 - `TabPFNRegressor` (v2.5)
