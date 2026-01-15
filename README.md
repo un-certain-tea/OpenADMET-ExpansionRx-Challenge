@@ -12,7 +12,7 @@ Final submission was generated using the winsorized mean over multiple modeling 
 
 Multiple molecular representations were used:
 - **RDKit:** 2D descriptors, ECFP4 (binary & count), 3D descriptors, Avalon, ERG fingerprints
-- **ChemAxon:** pKa, logP, logD, H/L/B descriptors
+- **ChemAxon:** pKa, logP, logD, H/L/B descriptors (calculated with their Python API)
 - **Jazzy:** Interaction energy descriptors
 - **CheMeleon:** 2048-bit molecular embeddings
 - **Minimol:** 512-bit molecular embeddings
