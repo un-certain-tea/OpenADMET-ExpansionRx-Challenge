@@ -63,7 +63,7 @@ The following approaches were explored but did not give me any good performance:
 - Delta learning with public ADMET data
 - Fine-tuning TabPFN
 - Finetuning https://github.com/NVIDIA-Digital-Bio/KERMT on challenge dataset.
-- AutoGluon ensemble models using the usual suspects. TabPFN 2.5 produced a better model in seconds than AutoGluon after 4 hours
+- AutoGluon ensemble models using the usual suspects. TabPFN 2.5 produced a better model in seconds than AutoGluon did after 4 hours
 
 Interestingly, none of the final models make use of ECFP4 fingerprints (binary or count-based). In my experiments, count-based fingerprints consistently resulted in poorer model performance.
 
